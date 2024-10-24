@@ -1,0 +1,9 @@
+bubble 620
+select 640
+insert 661
+shell 536
+quick 541
+heap 414
+merge 528
+count 553
+radix 
