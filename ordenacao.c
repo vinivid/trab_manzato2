@@ -160,7 +160,7 @@ void merge_sort(int *A, int size){
     free(B); B = NULL; 
 }
 
-static int mediana_de_tres(int a, int b, int c) {
+static int median(int a, int b, int c) {
     int x = a - b;
     int y = b - c;
     int z = a - c;
@@ -174,12 +174,12 @@ static int mediana_de_tres(int a, int b, int c) {
         return a;
 }
 
-static int particao (int* vec, int inf, int sup) {
+static int partition (int* vec, int inf, int sup) {
 	int meio = (inf + sup)/2;
     int i = inf;
 	int j = sup;
 
-    int pivo = mediana_de_tres(vec[inf], vec[meio], vec[sup]);
+    int pivo = median(vec[inf], vec[meio], vec[sup]);
 	
 	while (i <= j) {
 		while (vec[i] < pivo) ++i;
@@ -209,7 +209,7 @@ void quick_sort (int* A, int size) {
 		sup = stack[top--];
 		inf = stack[top--];
 		
-		int part = particao(A, inf, sup);
+		int part = partition(A, inf, sup);
 
 		if (part - 1 > inf) {
 			stack[++top] = inf;
@@ -224,3 +224,36 @@ void quick_sort (int* A, int size) {
 
 	free(stack);
 }
+
+void counting_sort(int* A, int size) {
+    int max_elem = A[0];
+
+    for (int i = 1; i < size; ++i)
+        if (A[i] > max_elem)
+            max_elem = A[i];
+
+    int *fp = calloc ((max_elem + 1), sizeof(int));
+    int *aux = malloc (size * sizeof(int));
+
+    if (!fp || !aux) {
+        printf("ERRO: ALOCACAO DE MEMORIA FALHOU\n");
+        exit(EXIT_FAILURE);    
+    }
+
+    for (int i = 0; i < size; ++i)
+        ++fp[A[i]];
+
+    for (int i = 1; i <= max_elem; i++) 
+        fp[i] += fp[i - 1];
+    
+    for (int i = size - 1; i >= 0; i--) {
+        aux[fp[A[i]] - 1] = A[i];
+        --fp[A[i]];
+    }
+
+    for (int i = 0; i < size; ++i) 
+        A[i] = aux[i];
+
+    free(fp);
+    free(aux);
+}   

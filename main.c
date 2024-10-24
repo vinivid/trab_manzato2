@@ -55,6 +55,7 @@ int main(int argc, char** argv) {
             merge_sort(vetor, tamanho);
             break;
         case count:
+            counting_sort(vetor, tamanho);
             break;
         case radix:
             break;
