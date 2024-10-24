@@ -48,13 +48,34 @@ void insert_sort(int *A, int size){
         comp = A[j];
         i = j - 1;
 
-        while(A[i] > comp  && i > -1){
+        while( i > -1 && A[i] > comp){
             A[i + 1] = A[i];
             --i;
         }
 
         A[i+1] = comp;
     }
+}
+
+void shell_sort(int* vec, int size){
+    int k = size/2;
+
+    while (k != 1) {
+        for (int j = k; j < size; ++j) {
+            int temp = vec[j];
+
+            int i;
+            for (i = j; (i >= k) && (vec[i - k] > temp); i -= k) {
+                vec[i] = vec[i - k];                
+            }
+
+            vec[i] = temp;
+        }
+
+        k = k/2;
+    }
+
+    insert_sort(vec, size);
 }
 
 void merge(int *A, int start, int middle, int end, int *B){

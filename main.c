@@ -43,6 +43,7 @@ int main(int argc, char** argv) {
             insert_sort(vetor, tamanho);
             break;
         case shell:
+            shell_sort(vetor, tamanho);
             break;
         case quick:
             quick_sort(vetor, tamanho);
