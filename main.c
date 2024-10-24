@@ -37,6 +37,7 @@ int main(int argc, char** argv) {
             bubble_sort(vetor, tamanho);
             break;
         case selectt:
+            selection_sort(vetor, tamanho);
             break;
         case insert:
             insert_sort(vetor, tamanho);
@@ -61,7 +62,7 @@ int main(int argc, char** argv) {
     } 
 
     for (int i = 0; i < tamanho; i++) {
-        printf("%d ", vetor[i]);
+        printf("%d\n", vetor[i]);
     }
 
     free(vetor);

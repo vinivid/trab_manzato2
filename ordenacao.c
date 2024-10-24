@@ -27,6 +27,19 @@ void bubble_sort(int *A, int size){
     }while(swaped == true);
 }
 
+void selection_sort(int* vec, int size) {
+    for (int i = 0; i < size - 1; ++i) {
+        int current_low = i;
+
+        for (int j = i + 1; j < size; ++j) {
+            if (vec[j] < vec[current_low])
+                current_low = j; 
+        }
+
+        swap(&vec[i], &vec[current_low]);
+    }
+}
+
 void insert_sort(int *A, int size){
     int i;
     int comp;
