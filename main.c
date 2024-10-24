@@ -49,6 +49,7 @@ int main(int argc, char** argv) {
             quick_sort(vetor, tamanho);
             break;
         case heap:
+            heap_sort(vetor, tamanho);
             break;
         case merge:
             merge_sort(vetor, tamanho);

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void swap(int *a, int *b){
+static void swap(int *a, int *b){
     int tmp = *a;
     *a = *b;
     *b = tmp;
@@ -78,7 +78,7 @@ void shell_sort(int* vec, int size){
     insert_sort(vec, size);
 }
 
-void merge(int *A, int start, int middle, int end, int *B){
+static void merge(int *A, int start, int middle, int end, int *B){
     int i = start;
     int j = middle;                  
 
@@ -93,6 +93,46 @@ void merge(int *A, int start, int middle, int end, int *B){
     }
 
     for(int k = start; k < end; ++k) A[k] = B[k];
+}
+
+static void build_max_heap(int* A, int size) {
+    for (int i = 0; i < size; ++i) {
+        int child = i + 1;
+
+        while (child > 0 && A[child/2] < A[child]) {
+            swap(&A[child], &A[child/2]);
+            child /= 2;
+        }
+    }
+}
+
+static void sieve(int* A, int size) {
+    int parent = 0;
+    int child = 1;
+    int top_heap = A[0];
+
+    while (child <= size) {
+        if ( (child < size) && (A[child] < A[child + 1])) 
+            ++child;
+
+        if (top_heap >= A[child]) 
+            break;
+
+        A[parent] = A[child];
+        parent = child;
+        child = 2*parent;    
+    }
+
+    A[parent] = top_heap;
+}
+
+void heap_sort(int* A, int size) {
+    build_max_heap(A, size - 1);
+
+    for (int m = size - 1; m >= 1; --m) {
+        swap(&A[0], &A[m]);
+        sieve(A, m - 1);
+    }
 }
 
 void merge_sort(int *A, int size){
@@ -120,7 +160,7 @@ void merge_sort(int *A, int size){
     free(B); B = NULL; 
 }
 
-int mediana_de_tres(int a, int b, int c) {
+static int mediana_de_tres(int a, int b, int c) {
     int x = a - b;
     int y = b - c;
     int z = a - c;
@@ -134,7 +174,7 @@ int mediana_de_tres(int a, int b, int c) {
         return a;
 }
 
-int particao (int* vec, int inf, int sup) {
+static int particao (int* vec, int inf, int sup) {
 	int meio = (inf + sup)/2;
     int i = inf;
 	int j = sup;
