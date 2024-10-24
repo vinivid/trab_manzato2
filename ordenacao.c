@@ -83,3 +83,54 @@ void merge_sort(int *A, int size){
 
     free(B); B = NULL; 
 }
+
+int particao (int* vec, int inf, int sup) {
+	int meio = (inf + sup)/2;
+	int pivo = vec[meio];
+    int i = inf;
+	int j = sup;
+	
+	while (i <= j) {
+		while (vec[i] < pivo) ++i;
+		while (vec[j] > pivo) --j;
+
+		if (i <= j) {
+			swap (&vec[i], &vec[j]);
+			++i;
+			--j;
+		}
+	}
+
+	return i;
+}
+
+void quick_sort (int* A, int size) {
+    int inf = 0;
+    int sup = size - 1;
+	int n = size;
+	int* stack = malloc( (sup + 1) * sizeof(int));
+
+	int top = -1;
+
+	stack[++top] = inf;
+	stack[++top] = sup;
+
+	while (top >= 0) {
+		sup = stack[top--];
+		inf = stack[top--];
+		
+		int part = particao(A, inf, sup);
+
+		if (part - 1 > inf) {
+			stack[++top] = inf;
+			stack[++top] = part - 1;
+		}
+
+		if (part < sup) {
+			stack[++top] = part;
+			stack[++top] = sup;
+		}
+	}
+
+	free(stack);
+}
