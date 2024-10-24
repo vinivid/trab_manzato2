@@ -1,3 +1,5 @@
+#include "ordenacao.h"
+
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -84,11 +86,26 @@ void merge_sort(int *A, int size){
     free(B); B = NULL; 
 }
 
+int mediana_de_tres(int a, int b, int c) {
+    int x = a - b;
+    int y = b - c;
+    int z = a - c;
+ 
+    if (x * y > 0)
+        return b;
+
+    else if (x * z > 0)
+        return c;
+    else
+        return a;
+}
+
 int particao (int* vec, int inf, int sup) {
 	int meio = (inf + sup)/2;
-	int pivo = vec[meio];
     int i = inf;
 	int j = sup;
+
+    int pivo = mediana_de_tres(vec[inf], vec[meio], vec[sup]);
 	
 	while (i <= j) {
 		while (vec[i] < pivo) ++i;
@@ -107,8 +124,7 @@ int particao (int* vec, int inf, int sup) {
 void quick_sort (int* A, int size) {
     int inf = 0;
     int sup = size - 1;
-	int n = size;
-	int* stack = malloc( (sup + 1) * sizeof(int));
+	int* stack = malloc( (size) * sizeof(int));
 
 	int top = -1;
 
