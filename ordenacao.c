@@ -218,19 +218,33 @@ void heap_sort(int* A, int size) {
 }
 
 static int median(int a, int b, int c) {
-    int x = a - b;
-    int y = b - c;
-    int z = a - c;
-
-    if (x * y > 0) {
-        ++comparison_qtt;
-        return b;
-    } else if (x * z > 0) {
-        comparison_qtt += 2;
-        return c;
-    }else {
-        comparison_qtt += 2;
-        return a;
+    if (a > b) 
+    {
+        if (b > c) {
+            comparison_qtt += 2;
+            return b;   
+        }
+        else if (a > c) {
+            comparison_qtt += 3;
+            return c;
+        }
+        else {
+            comparison_qtt += 3;
+            return a;
+        }
+    }else{
+        if (a > c) {
+            comparison_qtt += 2;
+            return a;
+        }
+        else if (b > c) {
+            comparison_qtt += 3;
+            return c;
+        }
+        else {
+            comparison_qtt += 3;
+            return b;
+        }
     }
 }
 
