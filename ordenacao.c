@@ -32,12 +32,12 @@ void bubble_sort(int *A, int size){
         swaped = false;
 
         for(int i = 0; i < size - 1; ++i){
-            comparison_qtt += 1;
             if(A[i] > A[i+1]){
                 swap(&A[i], &A[i+1]);
                 swaped = true;
                 ++swap_qtt;
             }
+            ++comparison_qtt;
         }
 
         size -= 1;
@@ -51,9 +51,12 @@ void selection_sort(int* vec, int size) {
         for (int j = i + 1; j < size; ++j) {
             if (vec[j] < vec[current_low])
                 current_low = j; 
+
+            ++comparison_qtt;
         }
 
         swap(&vec[i], &vec[current_low]);
+        ++swap_qtt;
     }
 }
 
@@ -66,11 +69,19 @@ void insert_sort(int *A, int size){
         i = j - 1;
 
         while( i > -1 && A[i] > comp){
-            A[i + 1] = A[i];
-            --i;
+            if (A[i] > comp) {
+                A[i + 1] = A[i];
+                --i;
+                ++swap_qtt;
+                ++comparison_qtt;
+            }else{
+                ++comparison_qtt;
+                break;
+            }
         }
 
         A[i+1] = comp;
+        ++swap_qtt;
     }
 }
 
@@ -82,11 +93,19 @@ void shell_sort(int* vec, int size){
             int temp = vec[j];
 
             int i;
-            for (i = j; (i >= k) && (vec[i - k] > temp); i -= k) {
-                vec[i] = vec[i - k];                
+            for (i = j; (i >= k); i -= k) {
+                if (vec[i - k] > temp) {
+                    vec[i] = vec[i - k];                
+                    ++swap_qtt;
+                    ++comparison_qtt;
+                }else {
+                    ++comparison_qtt;
+                    break;
+                }
             }
 
             vec[i] = temp;
+            ++swap_qtt;
         }
 
         k = k/2;
@@ -103,53 +122,15 @@ static void merge(int *A, int start, int middle, int end, int *B){
         if(i < middle && (j >= end || A[i] <= A[j])){
             B[k] = A[i];
             ++i;
+            ++comparison_qtt;
         }else{
             B[k] = A[j];
             ++j;
+            ++comparison_qtt;
         }
     }
 
     for(int k = start; k < end; ++k) A[k] = B[k];
-}
-
-static void build_max_heap(int* A, int size) {
-    for (int i = 0; i < size; ++i) {
-        int child = i + 1;
-
-        while (child > 0 && A[child/2] < A[child]) {
-            swap(&A[child], &A[child/2]);
-            child /= 2;
-        }
-    }
-}
-
-static void sieve(int* A, int size) {
-    int parent = 0;
-    int child = 1;
-    int top_heap = A[0];
-
-    while (child <= size) {
-        if ( (child < size) && (A[child] < A[child + 1])) 
-            ++child;
-
-        if (top_heap >= A[child]) 
-            break;
-
-        A[parent] = A[child];
-        parent = child;
-        child = 2*parent;    
-    }
-
-    A[parent] = top_heap;
-}
-
-void heap_sort(int* A, int size) {
-    build_max_heap(A, size - 1);
-
-    for (int m = size - 1; m >= 1; --m) {
-        swap(&A[0], &A[m]);
-        sieve(A, m - 1);
-    }
 }
 
 void merge_sort(int *A, int size){
@@ -177,18 +158,80 @@ void merge_sort(int *A, int size){
     free(B); B = NULL; 
 }
 
+static void build_max_heap(int* A, int size) {
+    for (int i = 0; i < size; ++i) {
+        int child = i + 1;
+
+        while (child > 0) {
+            if (A[child/2] < A[child]) {
+                swap(&A[child], &A[child/2]);
+                child /= 2;
+                ++swap_qtt;
+                ++comparison_qtt;
+            }else {
+                ++comparison_qtt;
+                break;
+            }
+        }
+    }
+}
+
+static void sieve(int* A, int size) {
+    int parent = 0;
+    int child = 1;
+    int top_heap = A[0];
+
+    while (child <= size) {
+        if ( child < size) {
+            if (A[child] < A[child + 1]) {
+                ++child;
+                ++comparison_qtt;
+            }else{
+                ++comparison_qtt;
+            }
+        }
+
+        if (top_heap >= A[child]) 
+            break;
+
+        ++comparison_qtt;
+
+        A[parent] = A[child];
+        parent = child;
+        child = 2*parent;    
+
+        ++swap_qtt;
+    }
+
+    A[parent] = top_heap;
+    ++swap_qtt;
+}
+
+void heap_sort(int* A, int size) {
+    build_max_heap(A, size - 1);
+
+    for (int m = size - 1; m >= 1; --m) {
+        swap(&A[0], &A[m]);
+        sieve(A, m - 1);
+        ++swap_qtt;
+    }
+}
+
 static int median(int a, int b, int c) {
     int x = a - b;
     int y = b - c;
     int z = a - c;
- 
-    if (x * y > 0)
-        return b;
 
-    else if (x * z > 0)
+    if (x * y > 0) {
+        ++comparison_qtt;
+        return b;
+    } else if (x * z > 0) {
+        comparison_qtt += 2;
         return c;
-    else
+    }else {
+        comparison_qtt += 2;
         return a;
+    }
 }
 
 static int partition (int* vec, int inf, int sup) {
@@ -199,11 +242,19 @@ static int partition (int* vec, int inf, int sup) {
     int pivo = median(vec[inf], vec[meio], vec[sup]);
 	
 	while (i <= j) {
-		while (vec[i] < pivo) ++i;
-		while (vec[j] > pivo) --j;
+		while (vec[i] < pivo) {
+          ++i;
+          ++comparison_qtt;  
+        }
+		while (vec[j] > pivo) {
+            --j;
+            ++comparison_qtt;
+        }
+
 
 		if (i <= j) {
 			swap (&vec[i], &vec[j]);
+            ++swap_qtt;
 			++i;
 			--j;
 		}

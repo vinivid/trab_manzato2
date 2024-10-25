@@ -34,35 +34,76 @@ int main(int argc, char** argv) {
             bubble_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %d");
+                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         case Select:
+            a = clock();
             selection_sort(vetor, tamanho);
+            b = clock();
+            if (!type_exit) {
+                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+            }
             break;
         case Insert:
+            a = clock();
             insert_sort(vetor, tamanho);
+            b = clock();
+            if (!type_exit) {
+                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+            }
             break;
         case Shell:
+            a = clock();
             shell_sort(vetor, tamanho);
+            b = clock();
+            if (!type_exit) {
+                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+            }
             break;
         case Quick:
+            a = clock();
             quick_sort(vetor, tamanho);
+            b = clock();
+            if (!type_exit) {
+                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+            }
             break;
         case Heap:
+            a = clock();
             heap_sort(vetor, tamanho);
+            b = clock();
+            if (!type_exit) {
+                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+            }
             break;
         case Merge:
+            a = clock();
             merge_sort(vetor, tamanho);
+            b = clock();
+            if (!type_exit) {
+                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+            }
             break;
         case Count:
+            a = clock();
             counting_sort(vetor, tamanho);
+            b = clock();
+            if (!type_exit) {
+                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+            }
             break;
         case Radix:
+            a = clock();
             radix_sort(vetor, tamanho);
+            b = clock();
+            if (!type_exit) {
+                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+            }
             break;
         default:
             printf("\n\nMétodo de ordenação não encontrado\n\n");
+            free(vetor);
             return 2;
     } 
 
