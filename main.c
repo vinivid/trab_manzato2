@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
     metodo_de_sort sort = numero_sort(argv[1]);
 
     int type_exit = 0;
-    if (!argv[2]) type_exit = atoi(argv[2]);
+    if (argv[2]) type_exit = atoi(argv[2]);
 
     int tamanho;
     scanf("%d", &tamanho);
