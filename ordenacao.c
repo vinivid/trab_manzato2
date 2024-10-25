@@ -4,6 +4,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+metodo_de_sort numero_sort(char* sort) {
+    int acc = 0;
+
+    for(int i = 0; sort[i]; ++i) {
+        if (sort[i] == 'x')
+            continue;
+        acc += sort[i];
+    }
+
+    return (metodo_de_sort)acc;
+}
+
 static void swap(int *a, int *b){
     int tmp = *a;
     *a = *b;
@@ -256,4 +268,38 @@ void counting_sort(int* A, int size) {
 
     free(fp);
     free(aux);
-}   
+}
+
+static void decimal_count_sort(int* A, int size, int decimal) { 
+    int* fp = calloc(10, sizeof(int)); 
+    int* aux = malloc(size * sizeof(int));
+
+    for (int i = 0; i < size; i++)
+        fp[(A[i] / decimal) % 10]++;
+
+    for (int i = 1; i < 10; i++)
+        fp[i] += fp[i - 1];
+
+    for (int i = size - 1; i >= 0; i--) {
+        aux[fp[(A[i] / decimal) % 10] - 1] = A[i];
+        fp[(A[i] /decimal) % 10]--;
+    }
+
+    for (int i = 0; i < size; i++)
+        A[i] = aux[i];
+
+    free(aux);
+    free(fp);
+}
+
+void radix_sort(int* A, int size) {
+    int max_elem = A[0];
+
+    for (int i = 1; i < size; ++i)
+        if (A[i] > max_elem)
+            max_elem = A[i];
+
+    for (int decimal = 1; max_elem / decimal > 0; decimal *= 10) {
+        decimal_count_sort(A, size, decimal);
+    }
+}
