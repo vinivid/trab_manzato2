@@ -1,6 +1,9 @@
 #ifndef SRT_H
 #define SRT_H
 
+extern int swap_qtt;
+extern int comparison_qtt;
+
 typedef enum metodo_de_sort_ {
     Bubble = 620,
     Select = 640,

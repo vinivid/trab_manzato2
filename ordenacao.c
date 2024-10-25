@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+int swap_qtt = 0;
+int comparison_qtt = 0;
+
 metodo_de_sort numero_sort(char* sort) {
     int acc = 0;
 
@@ -29,9 +32,11 @@ void bubble_sort(int *A, int size){
         swaped = false;
 
         for(int i = 0; i < size - 1; ++i){
+            comparison_qtt += 1;
             if(A[i] > A[i+1]){
                 swap(&A[i], &A[i+1]);
                 swaped = true;
+                ++swap_qtt;
             }
         }
 

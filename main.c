@@ -7,7 +7,7 @@
 int main(int argc, char** argv) {
     if (argc <= 1) {
         printf("É necessário que se passe no primeiro um método de ordenação a ser utilizado\n");
-        printf("Os argumentos possíveis são:\nbubble : BubbleSort\nselect : SelectionSort\ninsert : InsertSort\nquick : QuickSort\nheap : HeapSort\nmerge : MegeSort\ncount : Contagem dos menores\nradix : RadixSort\n");
+        printf("Os argumentos possíveis estão a seguir em que na esquerda é o argumento e na direita é o método de ordenação que o programa utilizara para aquele argumento.\nbubble : BubbleSort\nselect : SelectionSort\ninsert : InsertSort\nquick : QuickSort\nheap : HeapSort\nmerge : MegeSort\ncount : Contagem dos menores\nradix : RadixSort\n");
         printf("Como segundo argumento é selecionado o tipo de saida que se tera:\n");
         printf("0 ou nada para que saia a quantidade de comparações usada pelo método, as trocas nos registros e o tempo tomado pelo algoritimo\n");
         printf("1 para que saia o vetor ordenanado pelo método\n");
@@ -19,6 +19,8 @@ int main(int argc, char** argv) {
     int type_exit = 0;
     if (argv[2]) type_exit = atoi(argv[2]);
 
+    clock_t a, b;
+
     int tamanho;
     scanf("%d", &tamanho);
     int* vetor = malloc(tamanho * sizeof(int));
@@ -28,7 +30,12 @@ int main(int argc, char** argv) {
 
     switch (sort) {
         case Bubble:
+            a = clock();
             bubble_sort(vetor, tamanho);
+            b = clock();
+            if (!type_exit) {
+                printf("%d %d %d %d");
+            }
             break;
         case Select:
             selection_sort(vetor, tamanho);
