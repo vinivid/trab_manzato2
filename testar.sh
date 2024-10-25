@@ -1,3 +1,5 @@
+array_methods=("bubble" "select" "insert" "shell" "quick" "heap" "merge" "count" "radix")
+
 for i in {2..5}
 do 
     echo 'bubble creord' $i
