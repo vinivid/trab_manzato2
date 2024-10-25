@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int swap_qtt = 0;
-int comparison_qtt = 0;
+unsigned long long swap_qtt = 0;
+unsigned long long comparison_qtt = 0;
 
 metodo_de_sort numero_sort(char* sort) {
     int acc = 0;

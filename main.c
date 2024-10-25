@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
             bubble_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+                printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         case Select:
@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
             selection_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+                printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         case Insert:
@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
             insert_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+                printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         case Shell:
@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
             shell_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+                printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         case Quick:
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
             quick_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+                printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         case Heap:
@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
             heap_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+                printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         case Merge:
@@ -82,7 +82,7 @@ int main(int argc, char** argv) {
             merge_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+                printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         case Count:
@@ -90,7 +90,7 @@ int main(int argc, char** argv) {
             counting_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+                printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         case Radix:
@@ -98,7 +98,7 @@ int main(int argc, char** argv) {
             radix_sort(vetor, tamanho);
             b = clock();
             if (!type_exit) {
-                printf("%d %d %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
+                printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);
             }
             break;
         default:
