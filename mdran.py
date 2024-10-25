@@ -12,12 +12,12 @@ for method in methods_list:
             for i in range(0, 4):
                 count = 0
 
-                for j in range(0, 4):
+                for j in range(0, 5):
                     count += data[i][j]
                 
                 if i == 3 :
-                    file.write('{:f} '.format(count/4))
+                    file.write('{:f} '.format(count/5))
                 else:
-                    file.write('{:d} '.format(int(count/4)))
+                    file.write('{:d} '.format(int(count/5)))
         
             file.write('\n')
