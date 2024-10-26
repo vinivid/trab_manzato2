@@ -9,7 +9,7 @@ SIZE = 2
 TIME = 3
 
 def quad_f(x, a, b, c):
-    return a * ((x + b) ** 2) + c
+    return a * ((x * b) ** 2) + c
 
 def nlogn(x, a, b):
     return a *(x) * np.log2(x) + b
@@ -20,25 +20,25 @@ def lin(x, a, b):
 DOMAIN = np.linspace(5, 100000, 1000)
 
 methods_list = ['bubble', 'count', 'heap', 'insert', 'merge', 'quick', 'radix', 'select', 'shell']
-methods_colors = {'bubble' : 'red',
-                  'count' : 'salmon',
-                  'heap' : 'orangered',
-                  'insert' : 'yellow',
-                  'merge' : 'skyblue',
+methods_colors = {'bubble' : 'crimson',
+                  'count' : 'darkblue',
+                  'heap' : 'black',
+                  'insert' : 'olive',
+                  'merge' : 'green',
                   'quick' : 'indigo',
-                  'radix' : 'crimson',
+                  'radix' : 'orange',
                   'select' : 'slategrey',
                   'shell' : 'aqua'} 
 
 methods_labels = {'bubble' : 'Bubble Sort',
                   'count' : 'Contagem dos Menores',
-                  'heap' : 'orangered',
-                  'insert' : 'yellow',
-                  'merge' : 'skyblue',
-                  'quick' : 'indigo',
-                  'radix' : 'crimson',
-                  'select' : 'slategrey',
-                  'shell' : 'aqua'}
+                  'heap' : 'Heap Sort',
+                  'insert' : 'Insertion Sort',
+                  'merge' : 'Merge Sort',
+                  'quick' : 'Quick Sort',
+                  'radix' : 'Radix Sort',
+                  'select' : 'Selection Sort',
+                  'shell' : 'Shell Sort'}
 
 linear_methods = ['count', 'radix']
 quad_methods = ['bubble', 'insert', 'shell', 'select']
@@ -81,24 +81,35 @@ def ran_opti_methods(x, y, data_dict : dict, param_dict : dict):
 def plt_lin(x, y, data_dict : dict, param_dict : dict):
     for method in linear_methods:
         plt.plot(data_dict[method][x], data_dict[method][y], color=methods_colors[method], marker='o', linestyle='None', linewidth=1, markersize=2)
-        plt.plot(DOMAIN, lin(DOMAIN, param_dict[method][0], param_dict [method][1]), color=methods_colors[method])
+        plt.plot(DOMAIN, lin(DOMAIN, param_dict[method][0], param_dict [method][1]), color=methods_colors[method], label=methods_labels[method])
 
 def plt_quad(x, y, data_dict : dict, param_dict : dict):
     for method in quad_methods:
         plt.plot(data_dict[method][x], data_dict[method][y], color=methods_colors[method], marker='o', linestyle='None', linewidth=1, markersize=2)
-        plt.plot(DOMAIN, quad_f(DOMAIN, param_dict[method][0], param_dict[method][1], param_dict[method][2]), color=methods_colors[method])
+        plt.plot(DOMAIN, quad_f(DOMAIN, param_dict[method][0], param_dict[method][1], param_dict[method][2]), color=methods_colors[method], label=methods_labels[method])
 
 def plt_nlogn(x, y, data_dict : dict, param_dict : dict):
     for method in nlogn_methods:
         plt.plot(data_dict[method][x], data_dict[method][y], color=methods_colors[method], marker='o', linestyle='None', linewidth=1, markersize=2)
-        plt.plot(DOMAIN, nlogn(DOMAIN, param_dict[method][0], param_dict[method][1]), color=methods_colors[method])
+        plt.plot(DOMAIN, nlogn(DOMAIN, param_dict[method][0], param_dict[method][1]), color=methods_colors[method], label=methods_labels[method])
 
-ax.set_xlabel("Quantidade de entradas")
-ax.set_ylabel("Tempo de processamento em segundos")
+#ran_opti_methods(SIZE, TIME, creord, params_creord)
+#plt_lin(SIZE, TIME, creord, params_creord)
+#plt_quad(SIZE, TIME, creord, params_creord)
+#plt_nlogn(SIZE, TIME, creord, params_creord)
+
+#ran_opti_methods(SIZE, TIME, decreord, params_decreord)
+#plt_lin(SIZE, TIME, decreord, params_decreord)
+#plt_quad(SIZE, TIME, decreord, params_decreord)
+#plt_nlogn(SIZE, TIME, decreord, params_decreord)
 
 ran_opti_methods(SIZE, TIME, ran, params_ran)
 plt_lin(SIZE, TIME, ran, params_ran)
-#plt_quad(SIZE, TIME, ran, params_ran)
+plt_quad(SIZE, TIME, ran, params_ran)
 plt_nlogn(SIZE, TIME, ran, params_ran)
+
+ax.set_xlabel("Quantidade de entradas")
+ax.set_ylabel("Tempo de processamento em segundos")
+plt.legend(loc="upper left")
 
 plt.show()
