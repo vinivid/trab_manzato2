@@ -105,7 +105,7 @@ def plt_nlogn(x, y, data_dict : dict, param_dict : dict):
 
 ran_opti_methods(SIZE, TIME, ran, params_ran)
 plt_lin(SIZE, TIME, ran, params_ran)
-plt_quad(SIZE, TIME, ran, params_ran)
+#plt_quad(SIZE, TIME, ran, params_ran)
 plt_nlogn(SIZE, TIME, ran, params_ran)
 
 ax.set_xlabel("Quantidade de entradas")
