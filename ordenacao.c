@@ -130,7 +130,10 @@ static void merge(int *A, int start, int middle, int end, int *B){
         }
     }
 
-    for(int k = start; k < end; ++k) A[k] = B[k];
+    for(int k = start; k < end; ++k) {
+        A[k] = B[k];
+        ++swap_qtt;
+    }
 }
 
 void merge_sort(int *A, int size){
@@ -140,7 +143,10 @@ void merge_sort(int *A, int size){
         exit(EXIT_FAILURE);        
     }
 
-    for(int i = 0; i < size; ++i) B[i] = A[i];
+    for(int i = 0; i < size; ++i) {
+        B[i] = A[i];
+        ++swap_qtt;
+    }
 
     for(int i = 2; i < size*2; i *=2){
         int middle = 0;
@@ -310,9 +316,11 @@ void quick_sort (int* A, int size) {
 void counting_sort(int* A, int size) {
     int max_elem = A[0];
 
-    for (int i = 1; i < size; ++i)
-        if (A[i] > max_elem)
+    for (int i = 1; i < size; ++i) {
+        if (A[i] > max_elem) 
             max_elem = A[i];
+        ++comparison_qtt;
+    }
 
     int *fp = calloc ((max_elem + 1), sizeof(int));
     int *aux = malloc (size * sizeof(int));
@@ -331,6 +339,7 @@ void counting_sort(int* A, int size) {
     for (int i = size - 1; i >= 0; i--) {
         aux[fp[A[i]] - 1] = A[i];
         --fp[A[i]];
+        ++swap_qtt;
     }
 
     for (int i = 0; i < size; ++i) 
@@ -353,10 +362,13 @@ static void decimal_count_sort(int* A, int size, int decimal) {
     for (int i = size - 1; i >= 0; i--) {
         aux[fp[(A[i] / decimal) % 10] - 1] = A[i];
         fp[(A[i] /decimal) % 10]--;
+        ++swap_qtt;
     }
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++) {
         A[i] = aux[i];
+        ++swap_qtt;        
+    }
 
     free(aux);
     free(fp);
@@ -365,9 +377,11 @@ static void decimal_count_sort(int* A, int size, int decimal) {
 void radix_sort(int* A, int size) {
     int max_elem = A[0];
 
-    for (int i = 1; i < size; ++i)
-        if (A[i] > max_elem)
+    for (int i = 1; i < size; ++i) {
+        if (A[i] > max_elem) 
             max_elem = A[i];
+        ++comparison_qtt;
+    }
 
     for (int decimal = 1; max_elem / decimal > 0; decimal *= 10) {
         decimal_count_sort(A, size, decimal);
