@@ -313,7 +313,7 @@ void quick_sort (int* A, int size) {
 	free(stack);
 }
 
-void counting_sort(int* A, int size) {
+/* void counting_sort(int* A, int size) {
     int max_elem = A[0];
 
     for (int i = 1; i < size; ++i) {
@@ -347,6 +347,35 @@ void counting_sort(int* A, int size) {
 
     free(fp);
     free(aux);
+} */
+
+void counting_smallest(int* A, int size) {
+    int* aux = calloc(size, sizeof(int));
+    int* asw = malloc(size * sizeof(int));
+
+    for (int i = 1; i < size; ++i) {
+        for (int j = i - 1; j >= 0; --j) {
+            if (A[i] < A[j]) {
+                ++aux[j];
+            } else {
+                ++aux[i];
+            }
+            ++comparison_qtt;
+        }
+    }
+
+    for (int i = 0; i < size; ++i) {
+        asw[aux[i]] = A[i];
+        ++swap_qtt;
+    }
+
+    for (int i = 0; i < size; ++i) {
+        A[i] = asw[i];
+        ++swap_qtt;        
+    }
+
+    free(aux);
+    free(asw);
 }
 
 static void decimal_count_sort(int* A, int size, int decimal) { 

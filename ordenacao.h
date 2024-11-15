@@ -25,7 +25,7 @@ void shell_sort(int* vec, int size);
 void merge_sort(int *A, int size);
 void quick_sort (int* A, int size);
 void heap_sort(int* A, int size);
-void counting_sort(int* A, int size);
+void counting_smallest(int* A, int size);
 void radix_sort(int* A, int size);
 
 #endif

@@ -87,7 +87,7 @@ int main(int argc, char** argv) {
             break;
         case Count:
             a = clock();
-            counting_sort(vetor, tamanho);
+            counting_smallest(vetor, tamanho);
             b = clock();
             if (!type_exit) {
                 printf("%llu %llu %d %lf\n", comparison_qtt, swap_qtt, tamanho, (double)(b - a)/CLOCKS_PER_SEC);

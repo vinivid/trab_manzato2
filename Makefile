@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS= -Wall -Wextra -Werror #-fsanitize=address 
+CFLAGS= -Wall -Wextra -Werror -g -fsanitize=address 
 OBJS= main.c ordenacao.c 
 DEPS= ordenacao.h 
 
