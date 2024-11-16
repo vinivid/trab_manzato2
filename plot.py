@@ -40,8 +40,9 @@ methods_labels = {'bubble' : 'Bubble Sort',
                   'select' : 'Selection Sort',
                   'shell' : 'Shell Sort'}
 
-linear_methods = ['count', 'radix']
-quad_methods = ['bubble', 'insert', 'shell', 'select']
+linear_methods = ['radix']
+#quad_methods = ['bubble', 'insert', 'shell', 'select', 'count']
+quad_methods = ['shell', 'select', 'count']
 nlogn_methods = ['heap', 'merge', 'quick']
 
 params_creord = {}
@@ -103,13 +104,15 @@ def plt_nlogn(x, y, data_dict : dict, param_dict : dict):
 #plt_quad(SIZE, TIME, decreord, params_decreord)
 #plt_nlogn(SIZE, TIME, decreord, params_decreord)
 
-ran_opti_methods(SIZE, TIME, ran, params_ran)
-plt_lin(SIZE, TIME, ran, params_ran)
-#plt_quad(SIZE, TIME, ran, params_ran)
-plt_nlogn(SIZE, TIME, ran, params_ran)
+ran_opti_methods(SIZE, QTT_SWAP, ran, params_ran)
+plt_lin(SIZE, QTT_SWAP, ran, params_ran)
+plt_quad(SIZE, QTT_SWAP, ran, params_ran)
+plt_nlogn(SIZE, QTT_SWAP, ran, params_ran)
 
 ax.set_xlabel("Quantidade de entradas")
-ax.set_ylabel("Tempo de processamento em segundos")
+#ax.set_ylabel("Tempo de processamento em segundos")
+#ax.set_ylabel("Quantidade de comparações")
+ax.set_ylabel('Tocas de registros')
 plt.legend(loc="upper left")
 
 plt.show()

@@ -123,10 +123,12 @@ static void merge(int *A, int start, int middle, int end, int *B){
             B[k] = A[i];
             ++i;
             ++comparison_qtt;
+            ++swap_qtt;
         }else{
             B[k] = A[j];
             ++j;
             ++comparison_qtt;
+            ++swap_qtt;
         }
     }
 
@@ -352,6 +354,11 @@ void quick_sort (int* A, int size) {
 void counting_smallest(int* A, int size) {
     int* aux = calloc(size, sizeof(int));
     int* asw = malloc(size * sizeof(int));
+
+    if (!asw || !aux) {
+        printf("ERRO: ALOCACAO DE MEMORIA FALHOU\n");
+        exit(EXIT_FAILURE);    
+    }
 
     for (int i = 1; i < size; ++i) {
         for (int j = i - 1; j >= 0; --j) {
