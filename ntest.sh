@@ -1,4 +1,4 @@
-array_methods=("merge" "count")
+array_methods=("insert")
 
 for method in "$array_methods[@]"
 do

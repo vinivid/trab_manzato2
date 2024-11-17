@@ -78,7 +78,11 @@ void insert_sort(int *A, int size){
                 ++comparison_qtt;
                 break;
             }
+
+            ++comparison_qtt;
         }
+
+        ++comparison_qtt;
 
         A[i+1] = comp;
         ++swap_qtt;
