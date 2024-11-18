@@ -1,3 +1,6 @@
+/* Vinícius Souza Freitas 15491959
+*/
+
 #include "ordenacao.h"
 
 #include <stdbool.h>

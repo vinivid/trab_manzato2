@@ -1,3 +1,6 @@
+/* Vinícius Souza Freitas 15491959
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
