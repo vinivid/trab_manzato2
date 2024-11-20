@@ -71,7 +71,7 @@ void insert_sort(int *A, int size){
         comp = A[j];
         i = j - 1;
 
-        while( i > -1 && A[i] > comp){
+        while( i > -1){
             if (A[i] > comp) {
                 A[i + 1] = A[i];
                 --i;
@@ -81,11 +81,7 @@ void insert_sort(int *A, int size){
                 ++comparison_qtt;
                 break;
             }
-
-            ++comparison_qtt;
         }
-
-        ++comparison_qtt;
 
         A[i+1] = comp;
         ++swap_qtt;
